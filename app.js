@@ -20,23 +20,37 @@ const bookingRouter = require('./routes/bookingRoutes');
 
 const app = express();
 
-const corsOptions = {
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'], // allow both in dev
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // if you’re sending cookies / auth headers
-};
+app.enable('trust proxy');
+
+// const corsOptions = {
+//   origin: ['http://localhost:3000', 'http://127.0.0.1:3000'], // allow both in dev
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true, // if you’re sending cookies / auth headers
+// };
+
+// // Set CORS options
+// app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(cors());
+
+app.options('*', cors());
+// app.options('/api/v1/tours/:id', cors()); // Would only allow non-simple requests on the tours/:id route
+
+// The below code would only allow requests from example.com
+// app.use(
+//   cors({
+//     origin: 'https://www.example.com',
+//   }),
+// );
+
 // 1) GLOBAL MIDDLEWARES
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Set CORS options
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 
 // Set security HTTP headers
 app.use(
