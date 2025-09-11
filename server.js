@@ -28,22 +28,24 @@ mongoose
 
 const port = process.env.PORT || 3000;
 
-const server = app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-  console.log('mode is', process.env.NODE_ENV);
-});
-
-process.on('unhandledRejection', (err) => {
-  console.log('Unhandled rejection! Shutting down...');
-  console.log(err);
-  server.close(() => process.exit(1));
-});
-
-process.on('SIGTERM', () => {
-  console.log('SIGTERM RECEIVED. Shutting down gracefully');
-  server.close(() => {
-    console.log('Process terminated!');
+if (process.env.NODE_ENV !== 'test') {
+  const server = app.listen(port, () => {
+    console.log(`App running on port ${port}...`);
+    console.log('mode is', process.env.NODE_ENV);
   });
-});
 
-module.exports = server;
+  process.on('unhandledRejection', (err) => {
+    console.log('Unhandled rejection! Shutting down...');
+    console.log(err);
+    server.close(() => process.exit(1));
+  });
+
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM RECEIVED. Shutting down gracefully');
+    server.close(() => {
+      console.log('Process terminated!');
+    });
+  });
+}
+
+module.exports = app;

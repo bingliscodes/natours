@@ -1,38 +1,40 @@
-// /* eslint-disable */
+/* eslint-disable */
 
-// const mongoose = require('mongoose');
-// const request = require('supertest');
-// const app = require('../server');
+const mongoose = require('mongoose');
+const request = require('supertest');
+const app = require('../server');
 
-// // CREATE NEW USER
-// describe('POST /api/v1/users', () => {
-//   const newUserData = {
-//     name: 'Cannoli Garcia',
-//     email: 'cannolitest@gmail.com',
-//     password: 'test1234',
-//     passwordConfirm: 'test1234',
-//     role: 'guide',
-//   };
+// CREATE new user
+describe('POST /api/v1/users', () => {
+  const newUserData = {
+    name: 'Cannoli Garcia',
+    email: 'cannolitest@gmail.com',
+    password: 'test1234',
+    passwordConfirm: 'test1234',
+    role: 'guide',
+  };
 
-//   it('responds with 201', async () => {
-//     const res = await request(app)
-//       .post('/api/v1/users/signup')
-//       .send(newUserData);
+  it('responds with 201', async () => {
+    const res = await request(app)
+      .post('/api/v1/users/signup')
+      .send(newUserData);
 
-//     expect(res.status).toBe(201);
-//   });
-// });
+    expect(res.status).toBe(201);
+  });
+});
 
-// // Sign in
-// describe('POST /api/v1/users/login', () => {
-//   const userData = {
-//     email: 'admin@natours.io',
-//     password: 'test1234',
-//   };
+// Sign in
+describe('POST /api/v1/users/login', () => {
+  const userData = {
+    email: 'admin@natours.io',
+    password: 'test1234',
+  };
 
-//   it('responds with 200', async () => {
-//     const res = (await request(app).post('/api/v1/users/login')).send(userData);
+  it('responds with 200', async () => {
+    const res = await request(app).post('/api/v1/users/login').send(userData);
 
-//     expect(res.status).toBe(200);
-//   });
-// });
+    expect(res.status).toBe(200);
+  });
+});
+
+// DELETE created user

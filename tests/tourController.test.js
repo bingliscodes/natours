@@ -16,7 +16,7 @@ describe('GET /api/v1/tours', () => {
   });
 
   // Get One Tour
-  it('GET api/v1/tours/5c88fa8cf4afda39709c2961 should return status 200 and the Park Camper tour', async () => {
+  it('GET api/v1/tours/:id should return status 200 and the Park Camper tour', async () => {
     const res = await request(app).get(
       '/api/v1/tours/5c88fa8cf4afda39709c2961',
     );
@@ -27,7 +27,10 @@ describe('GET /api/v1/tours', () => {
 });
 
 // Create tour
-describe.only('POST /api/v1/tours', () => {
+// Would probably make sense to perform all the protected operations within one async block so I can use the same auth token
+
+let newTourId;
+describe('POST /api/v1/tours', () => {
   const newTourData = {
     name: 'New Test Tour',
     duration: 5,
@@ -58,5 +61,23 @@ describe.only('POST /api/v1/tours', () => {
       .send(newTourData);
     expect(tourRes.body.data.data.name === newTourData.name);
     expect(tourRes.status).toBe(201);
+    newTourId = tourRes.body.data.data._id;
+    console.log('New tour created: ', newTourId);
+  });
+});
+
+describe('DELETE /api/v1/tours/:id', () => {
+  it('responds with 204 status', async () => {
+    // Protected route means we need an auth token
+    const userRes = await request(app)
+      .post('/api/v1/users/login')
+      .send({ email: 'admin@natours.io', password: 'test1234' });
+
+    const { token } = userRes.body;
+
+    const tourRes = await request(app)
+      .delete(`/api/v1/tours/${newTourId}`)
+      .set('Authorization', `Bearer ${token}`);
+    expect(tourRes.status).toBe(204);
   });
 });
