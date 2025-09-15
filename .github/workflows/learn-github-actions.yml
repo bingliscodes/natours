@@ -1,15 +1,6 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
-env:
-  DATABASE: ${{vars.DATABASE}}
-  DATABASE_PASSWORD: ${{vars.DATABASE_PASSWORD}}
-  JWT_SECRET: ${{vars.JWT_SECRET}}
-  JWT_COOKIE_EXPIRES_IN: ${{vars.JWT_COOKIE_EXPIRES_IN}}
-  JWT_EXPIRES_IN: ${{vars.JWT_EXPIRES_IN}}
-  EMAIL_FROM: ${{vars.EMAIL_FROM}}
-  SENDGRID_USERNAME: ${{vars.SENDGRID_USERNAME}}
-  SENDGRID_PASSWORD: ${{vars.SENDGRID_PASSWORD}}
 
 jobs:
   run-unit-tests:
@@ -19,9 +10,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: use variables
-        run: |
-          echo "DATABASE : ${{vars.DATABASE}}"
-          echo "Database secret : ${{secrets.DATABASE}}"
+        env:
+          DATABASE: ${{vars.DATABASE}}
+          DATABASE_PASSWORD: ${{vars.DATABASE_PASSWORD}}
+          JWT_SECRET: ${{vars.JWT_SECRET}}
+          JWT_COOKIE_EXPIRES_IN: ${{vars.JWT_COOKIE_EXPIRES_IN}}
+          JWT_EXPIRES_IN: ${{vars.JWT_EXPIRES_IN}}
+          EMAIL_FROM: ${{vars.EMAIL_FROM}}
+          SENDGRID_USERNAME: ${{vars.SENDGRID_USERNAME}}
+          SENDGRID_PASSWORD: ${{vars.SENDGRID_PASSWORD}}
       - run: npm ci
       - run: npm test
