@@ -7,9 +7,9 @@ env:
   JWT_SECRET: ${{vars.JWT_SECRET}}
   JWT_COOKIE_EXPIRES_IN: ${{vars.JWT_COOKIE_EXPIRES_IN}}
   JWT_EXPIRES_IN: ${{vars.JWT_EXPIRES_IN}}
-  EMAIL_FROM: ${{var.EMAIL_FROM}}
+  EMAIL_FROM: ${{vars.EMAIL_FROM}}
   SENDGRID_USERNAME: ${{vars.SENDGRID_USERNAME}}
-  SENDGRID_PASSWORD: ${{var.SENDGRID_PASSWORD}}
+  SENDGRID_PASSWORD: ${{vars.SENDGRID_PASSWORD}}
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
