@@ -10,6 +10,10 @@ env:
   EMAIL_FROM: ${{secrets.EMAIL_FROM}}
   SENDGRID_USERNAME: ${{secrets.SENDGRID_USERNAME}}
   SENDGRID_PASSWORD: ${{secrets.SENDGRID_PASSWORD}}
+  EMAIL_USERNAME: ${{secrets.EMAIL_USERNAME}}
+  EMAIL_PASSWORD: ${{secrets.EMAIL_PASSWORD}}
+  EMAIL_HOST: sandbox.smtp.mailtrap.io
+  EMAIL_PORT: 2525
 
 jobs:
   run-unit-tests:
