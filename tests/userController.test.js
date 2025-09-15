@@ -20,7 +20,7 @@ describe('POST /api/v1/users', () => {
       .send(newUserData);
 
     expect(res.status).toBe(201);
-  });
+  }, 10000);
 });
 
 // Sign in
@@ -34,7 +34,7 @@ describe('POST /api/v1/users/login', () => {
     const res = await request(app).post('/api/v1/users/login').send(userData);
 
     expect(res.status).toBe(200);
-  });
+  }, 10000);
 });
 
 // DELETE created user

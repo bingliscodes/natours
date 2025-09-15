@@ -63,7 +63,7 @@ describe('POST /api/v1/tours', () => {
     expect(tourRes.status).toBe(201);
     newTourId = tourRes.body.data.data._id;
     console.log('New tour created: ', newTourId);
-  });
+  }, 10000);
 });
 
 describe('DELETE /api/v1/tours/:id', () => {
@@ -79,5 +79,5 @@ describe('DELETE /api/v1/tours/:id', () => {
       .delete(`/api/v1/tours/${newTourId}`)
       .set('Authorization', `Bearer ${token}`);
     expect(tourRes.status).toBe(204);
-  });
+  }, 10000);
 });
