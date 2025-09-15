@@ -4,6 +4,9 @@ on: [push]
 env:
   DATABASE: mongodb+srv://bjammin134:<PASSWORD>@cluster0.jpq9kjt.mongodb.net/natours?retryWrites=true&w=majority&appName=Cluster0
   DATABASE_PASSWORD: Kgp7JGw6ihjo3yGA
+  JWT_SECRET: 4bP3lBnrCG2ZGafzrkhAXoEd8XjLEF4s
+  JWT_COOKIE_EXPIRES_IN: 90
+  JWT_EXPIRES_IN: 90d
 
 jobs:
   run-unit-tests:
