@@ -10,6 +10,7 @@ env:
   EMAIL_FROM: ${{vars.EMAIL_FROM}}
   SENDGRID_USERNAME: ${{vars.SENDGRID_USERNAME}}
   SENDGRID_PASSWORD: ${{vars.SENDGRID_PASSWORD}}
+
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
@@ -18,5 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: use variables
+        run: |
+          echo "DATABASE : $DATABASE"
+          echo "Database secret : ${{secrets.DATABASE}}"
       - run: npm ci
       - run: npm test
