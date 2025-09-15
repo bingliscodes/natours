@@ -21,7 +21,7 @@ jobs:
           node-version: '24'
       - name: use variables
         run: |
-          echo "DATABASE : $DATABASE"
+          echo "DATABASE : ${{vars.DATABASE}}"
           echo "Database secret : ${{secrets.DATABASE}}"
       - run: npm ci
       - run: npm test
