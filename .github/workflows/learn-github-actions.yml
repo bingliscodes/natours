@@ -1,13 +1,17 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
+env:
+  DATABASE: mongodb+srv://bjammin134:<PASSWORD>@cluster0.jpq9kjt.mongodb.net/natours?retryWrites=true&w=majority&appName=Cluster0
+  DATABASE_PASSWORD: Kgp7JGw6ihjo3yGA
+
 jobs:
-  check-bats-version:
+  run-unit-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - run: npm install -g bats
-      - run: bats -v
+          node-version: '24'
+      - run: npm ci
+      - run: npm test
