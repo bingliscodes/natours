@@ -7,6 +7,9 @@ env:
   JWT_SECRET: 4bP3lBnrCG2ZGafzrkhAXoEd8XjLEF4s
   JWT_COOKIE_EXPIRES_IN: 90
   JWT_EXPIRES_IN: 90d
+  EMAIL_FROM: beinglisfit@gmail.com
+  SENDGRID_USERNAME: apikey
+  SENDGRID_PASSWORD: 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
 
 jobs:
   run-unit-tests:
