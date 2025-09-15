@@ -2,6 +2,7 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 env:
+  DATABASE: mongodb+srv://bjammin134:<PASSWORD>@cluster0.jpq9kjt.mongodb.net/natours?retryWrites=true&w=majority&appName=Cluster0
   DATABASE_PASSWORD: Kgp7JGw6ihjo3yGA
 
 jobs:
