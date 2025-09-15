@@ -2,15 +2,14 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 env:
-  DATABASE: mongodb+srv://bjammin134:<PASSWORD>@cluster0.jpq9kjt.mongodb.net/natours?retryWrites=true&w=majority&appName=Cluster0
-  DATABASE_PASSWORD: Kgp7JGw6ihjo3yGA
-  JWT_SECRET: 4bP3lBnrCG2ZGafzrkhAXoEd8XjLEF4s
-  JWT_COOKIE_EXPIRES_IN: 90
-  JWT_EXPIRES_IN: 90d
-  EMAIL_FROM: beinglisfit@gmail.com
-  SENDGRID_USERNAME: apikey
-  SENDGRID_PASSWORD: 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
-
+  DATABASE: ${{vars.DATABASE}}
+  DATABASE_PASSWORD: ${{vars.DATABASE_PASSWORD}}
+  JWT_SECRET: ${{vars.JWT_SECRET}}
+  JWT_COOKIE_EXPIRES_IN: ${{vars.JWT_COOKIE_EXPIRES_IN}}
+  JWT_EXPIRES_IN: ${{vars.JWT_EXPIRES_IN}}
+  EMAIL_FROM: ${{var.EMAIL_FROM}}
+  SENDGRID_USERNAME: ${{vars.SENDGRID_USERNAME}}
+  SENDGRID_PASSWORD: ${{var.SENDGRID_PASSWORD}}
 jobs:
   run-unit-tests:
     runs-on: ubuntu-latest
