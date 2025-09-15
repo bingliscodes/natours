@@ -17,7 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
-      - name: Get variables
         with:
           node-version: '24'
       - run: npm ci
